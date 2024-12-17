@@ -1,10 +1,7 @@
-The script alarm.sh is a simple alarm clock with snooze function. The wakeup
-time is requested of the user when the script is run and the snooze interval
-is set as a value in the file.
+The script alarm.sh is a simple alarm clock. The wakeup time is requested of the user when the script is run
+ 
+The script buzzer.sh is called by alarm.sh to make the actual alarm sound. It currently sets the volume to 80% of max and launches firefox streaming Deutschlandfunk
 
-The script buzzer.sh is called by alarm.sh to make the actual alarm sound. It
-uses the afplay utility, which is specific to Mac OS X 10.5 and later. Anything
-that makes noise will do, though!
+These are derived from: https://github.com/mkscrg/alarm-clock
 
-These scripts are unlicensed. That is, they are in the public domain and free
-to use in any capacity for any purpose.
+These scripts are unlicensed. That is, they are in the public domain and free to use in any capacity for any purpose.
