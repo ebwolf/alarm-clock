@@ -1,11 +1,6 @@
 #!/bin/bash
 
 # Buzzer script for alarm.sh
-# The afplay utility is specific to Mac OS X 10.5 and later.
 
-while :
-do
-  afplay /System/Library/Sounds/Hero.aiff
-  sleep 1
-done
+firefox https://st01.sslstream.dlf.de/dlf/01/128/mp3/stream.mp3?aggregator=web
 
