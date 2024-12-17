@@ -5,48 +5,27 @@
 echo "What time should the alarm go off? (HH:MM)"
 read target
 
-# sleep interval is 15 minutes
-snooze=`dc -e "15 60 *p"`
 
 # convert wakeup time to seconds
 target_h=`echo $target | awk -F: '{print $1}'`
 target_m=`echo $target | awk -F: '{print $2}'`
 target_s_t=`dc -e "$target_h 60 60 ** $target_m 60 *+p"`
 
-# get current time and convert to seconds
-clock=`date | awk '{print $4}'`
-clock_h=`echo $clock | awk -F: '{print $1}'`
-clock_m=`echo $clock | awk -F: '{print $2}'`
-clock_s=`echo $clock | awk -F: '{print $3}'`
-clock_s_t=`dc -e "$clock_h 60 60 ** $clock_m 60 * $clock_s ++p"`
+clock_h="12"
+clock_m="00"
 
-# calculate difference in times, add number of sec. in day and mod by same
-sec_until=`dc -e "24 60 60 **d $target_s_t $clock_s_t -+r%p"`
-
-echo "The alarm will go off at $target."
-
-sleep $sec_until
-
-# snooze loop
-while :
-do
-  echo -e "\nWake up!"
-  ./playlist_buzzer.sh &
-  bpid=$!
-  disown $bpid                          # eliminates termination message
-  read -n1 input
-  for bsub in $(ps -o pid,ppid -ax | \
-                awk "{ if (\$2 == $bpid) { print \$1 }}")
+while test "$clock_h:$clock_m" != "$target_h:$target_m"
   do
-    kill $bsub                          # kill children
-  done
-  kill $bpid
-  if [ "$input" == "Q" ]
-  then
-    echo -e "\nGood morning!"
-    exit
-  else
-    echo -e "\nSnoozing for $snooze seconds..."
-    sleep $snooze
-  fi
+  echo "The alarm will go off at $target_h:$target_m."
+  clock=`date "+%a %b %d %T" | awk '{print $4}'`
+  clock_h=`echo $clock | awk -F: '{print $1}'`
+  clock_m=`echo $clock | awk -F: '{print $2}'`
+  echo "It is now $clock_h:$clock_m"
+  sleep 15
+  clear
 done
+
+echo -e "\nWake up!"
+./buzzer.sh &
+bpid=$!
+disown $bpid                          # eliminates termination message
