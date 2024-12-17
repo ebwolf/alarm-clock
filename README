@@ -1,6 +1,6 @@
 The script alarm.sh is a simple alarm clock. The wakeup time is requested of the user when the script is run
  
-The script buzzer.sh is called by alarm.sh to make the actual alarm sound. It currently sets the volume to 80% of max and launches firefox streaming Deutschlandfunk
+The script buzzer.sh is called by alarm.sh to make the actual alarm sound. It currently sets the volume to 80% of max and launches firefox streaming Deutschlandfunk (https://github.com/mkscrg/alarm-clock)
 
 These are derived from: https://github.com/mkscrg/alarm-clock
 
