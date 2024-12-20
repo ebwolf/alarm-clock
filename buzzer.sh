@@ -1,7 +1,9 @@
 #!/bin/bash
 
+# Unmute the volume
+amixer sset 'Master' unmute
 # Set volume to 80%
-amixer -D pulse sset Master 80%
+amixer sset 'Master' 90%
 
 # Buzzer script for alarm.sh
 
