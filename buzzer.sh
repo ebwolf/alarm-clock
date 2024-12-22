@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# disconnect Bluetooth Headphones
+bluetoothctl disconnect
+
 # Unmute the volume
 amixer sset 'Master' unmute
 # Set volume to 80%
